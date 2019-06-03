@@ -15,12 +15,12 @@ import { Carousel, WingBlank, PullToRefresh, ListView } from 'antd-mobile';
 import router from 'umi/router';
 import Scroll from 'components/Scroll/index'
 let allStoreList = []
-@connect(({ home }) => ({
+@connect(({ home, storelist }) => ({
   AareByParentCode: home.AareByParentCode,
   HomeLableList: home.HomeLableList,
   AppBanners: home.AppBanners,
-  HomeStore: home.MoreHomeStore,
-  haveNext: home.haveNext,
+  haveNext: storelist.haveNext,
+  HomeStore: storelist.StoreList,
 }))
 class Index extends PureComponent {
   constructor(props) {
@@ -35,6 +35,11 @@ class Index extends PureComponent {
   componentDidMount = () => {
     this.queryStore()
   }
+  componentWillUnmount = () => {
+    this.props.dispatch({
+      type: 'storelist/clearStroeList',
+    });
+  };
   // 获取首页门店
   queryStore = (isLoadMore) => {
     if (this.props.haveNext === false && isLoadMore) {
@@ -46,13 +51,16 @@ class Index extends PureComponent {
       allStoreList = []
     }
     return dispatch({
-      type: 'home/getAppHomeMoreStoreList',
+      type: 'storelist/getStoreList',
       payload: {
-        "gisLat": localStorage.getItem('UserCityLat'),
-        "gisLng": localStorage.getItem('UserCityLng'),
-        "pageNum": this.pageNum,
-        "pageSize": 10
-      }
+        gisLat: localStorage.getItem('UserCityLat'),
+        gisLng: localStorage.getItem('UserCityLng'),
+        pageNum: this.pageNum,
+        pageSize: 10,
+        sortType: 1,
+        labelId: '',
+        areaCode: '',
+      },
     })
   }
   // 获取首页banner
@@ -121,11 +129,11 @@ class Index extends PureComponent {
             <ul>
               {
                 allStoreList.length > 0 ? allStoreList.map(item => {
-                  const Background = item.fileBo ? item.fileBo.path : BannerrImg
+                  const Background = item.storeLogo ? item.storeLogo.path : BannerrImg;
                   const distanceNum = item.distance ? item.distance > 1000 ? item.distance / 1000 : item.distance : 0
-                  const avgAmount = item.perCapitaConsum ? item.perCapitaConsum / 100 : 0
+                  const avgAmount = item.pricePerPerson ? item.pricePerPerson / 100 : 0;
                   return (
-                    <li onClick={() => this.toStoreHome(item.id)} key={item.id}>
+                    <li onClick={() => this.toStoreHome(item.storeId)} key={item.storeId}>
                       <img className={listStyle.liLeft} src={Background} />
                       <div className={listStyle.liRight}>
                         <div className={listStyle.liTitle}>{item.storeName}</div>
@@ -144,16 +152,24 @@ class Index extends PureComponent {
                             ''
                           }
                         </div>
-                        {
-                          item.offerVo ? <div className={listStyle.dec} onClick={(e) => {
-                            this.toProductInfo(e, item.offerVo.offerId)
-                          }}>
-                            {item.offerVo ?
-                              <span>hot</span> : ''
-                            }
-                            <p>{item.offerVo.tags ? '[' + item.offerVo.tags[0].tagName + "]" : ''}{item.offerVo.offerName}</p>
-                          </div> : ''
-                        }
+                        {item.hotGoodsName ? (
+                            <div
+                              className={listStyle.dec}
+                              onClick={e => {
+                                this.toProductInfo(e, item.hotGoodsId);
+                              }}
+                            >
+                              {item.hotGoodsName ? <span>hot</span> : ''}
+                              <p>
+                                {item.hotGoodsLabels
+                                  ? '[' + item.hotGoodsLabels[0].tagName + ']'
+                                  : ''}
+                                {item.hotGoodsName}
+                              </p>
+                            </div>
+                          ) : (
+                            ''
+                          )}
 
                       </div>
                     </li>

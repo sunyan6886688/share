@@ -51,10 +51,11 @@ class ShopList extends PureComponent {
     return dispatch({
       type: 'storelist/getAllAppHotStores',
       payload: {
-        "gisLat": localStorage.getItem('UserCityLat'),
-        "gisLng": localStorage.getItem('UserCityLng'),
-        "pageNum": this.pageNum,
-        "pageSize": 10
+        gisLat: localStorage.getItem('UserCityLat'),
+        gisLng: localStorage.getItem('UserCityLng'),
+        pageNum: this.pageNum,
+        pageSize: 10,
+        labelId: localStorage.getItem('labelId'),
       }
     })
   }

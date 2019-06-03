@@ -10,7 +10,7 @@ import BannerrImg from '@/assets/noBg.png'
 import { connect } from 'dva';
 import router from 'umi/router';
 import { getRect, addClass, removeClass, offsetBody } from 'utils/dom'
-let allStoreList = []
+
 let scrollHight = ''
 @connect(({ storelist, home }) => ({
   AareByParentCode: home.AareByParentCode,
@@ -32,7 +32,8 @@ class StoreList extends PureComponent {
     scrollTop: '',
     labelName: '全部',
     sortType: '1',
-    sortTypeName: '智能排序'
+    sortTypeName: '智能排序',
+    allStoreList: [],
   }
   componentDidMount = () => {
     this.transfromDom = new TransfromDom({ id: 'pickerRadio' })
@@ -45,10 +46,9 @@ class StoreList extends PureComponent {
       sortType: localStorage.getItem('sortType') || '1',
       areaCode: localStorage.getItem('areaCode'),
     }, () => {
-
-      this.getStoreList()
+      this.getStoreList();
+      this.getHotStoreList();
     })
-    this.getHotStoreList()
 
   }
   componentDidUpdate() {
@@ -60,7 +60,6 @@ class StoreList extends PureComponent {
     this.props.dispatch({
       type: 'storelist/clearStroeList'
     });
-    allStoreList = []
     this.transfromDom && this.transfromDom.destroy()
   }
 
@@ -125,7 +124,8 @@ class StoreList extends PureComponent {
       type: 'storelist/getHotStoreList',
       payload: {
         "gisLat": "",
-        "gisLng": ""
+        "gisLng": "",
+        labelId: this.state.labelId,
       }
     })
   }
@@ -137,7 +137,9 @@ class StoreList extends PureComponent {
     const { dispatch } = this.props
     this.pageNum = !isLoadMore ? 1 : this.pageNum + 1
     if (!isLoadMore) {
-      allStoreList = []
+      this.setState({
+        allStoreList: []
+      })
     }
     localStorage.setItem("labelId", this.state.labelId)
     localStorage.setItem("sortType", this.state.sortType)
@@ -156,7 +158,22 @@ class StoreList extends PureComponent {
         "pageNum": this.pageNum,
         "pageSize": 10
       }
-    }).finally(err => {
+    })
+    .then(data => {
+      if (!data) return;
+      if (!data.appStores) return;
+      if (data.appStores.length === 0) return;
+
+      let oldStoreList = [...this.state.allStoreList];
+      data.appStores.forEach(item => {
+        oldStoreList.push(item);
+      });
+
+      this.setState({
+        allStoreList: oldStoreList,
+      });
+    })
+    .finally(err => {
       let { tabbar, scrollCt, Loadding, state } = this
       Loadding.renderToDom('')
       if (!isLoadMore && state.tabShow) {
@@ -203,8 +220,9 @@ class StoreList extends PureComponent {
       labelId: item ? item.tagId : '',
       labelName: item ? item.tagName : '全部'
     }, () => {
-      this.reRender()
-      this.getStoreList()
+      this.reRender();
+      this.getStoreList();
+      this.getHotStoreList();
     })
   }
   chooseSortType = (item) => {
@@ -259,11 +277,11 @@ class StoreList extends PureComponent {
     if (!tabShow) {
       return ''
     }
-    console.log(listTab)
+    // console.log(listTab)
     return (
       <div className={styles.tab} ref={ref => { this.fixedTab = ref }}>
         {listTab.map((item, index) => {
-          console.log(index)
+          // console.log(index)
           let { tabBoxActive, tabBox } = styles
           if (index + 1 !== tabNUm) {
             tabBoxActive = ''
@@ -397,32 +415,14 @@ class StoreList extends PureComponent {
       </Model>
     )
   }
-  createNewList() {
-    const { StoreList } = this.props;
 
-    StoreList && StoreList.forEach(item => {
-      if (allStoreList.findIndex(innerItem => innerItem.storeId === item.storeId) < 0) {
-        allStoreList.push(item);
-      }
-    })
-  }
   render() {
     const { StoreList, HotStoreList } = this.props
     let { tabShow } = this.state
     let { tabShowCls, list } = listStyle
-    let listClass = [list, tabShow ? tabShowCls : ''].join(' ')
-    // const allStoreListStr=JSON.stringify(allStoreList)
-    // StoreList?StoreList.map(item=>{
-    //   allStoreListStr.indexOf(item.storeId)<0?
-    //   allStoreList.push(item):''
-    // }):''
-    StoreList && StoreList.forEach(item => {
-      if (allStoreList.findIndex(innerItem => innerItem.storeId === item.storeId) < 0) {
-        allStoreList.push(item);
-      }
-    })
-    // console.log('StoreList',StoreList)
-    // console.log(allStoreList)
+    let listClass = [list, tabShow ? tabShowCls : ''].join(' ');
+    const { allStoreList } = this.state;
+    
     return (
       <ViewBox header={this.renderHeader()}>
         <Scroll className={styles.scroll}
