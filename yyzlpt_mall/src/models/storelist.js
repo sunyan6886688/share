@@ -1,4 +1,3 @@
-
 import { message } from 'antd';
 import {
   getStoreList,
@@ -6,135 +5,132 @@ import {
   getAllAppHotStores,
   getBrandInfo4App,
   getStoreListByBrandId4App,
-  getAllUsedTags
+  getAllUsedTags,
 } from '@/services/storeList';
 export default {
   namespace: 'storelist',
-  state: {
-   
-  },
+  state: {},
 
   effects: {
     // 获取门店列表
-    *getStoreList({payload},{call,put}){
-      const response =yield call(getStoreList,payload);
-      console.log(response)
-      if(response.code==200){
+    *getStoreList({ payload }, { call, put }) {
+      const response = yield call(getStoreList, payload);
+      console.log(response);
+      if (response.code == 200) {
         yield put({
-          type:'saveStoreList',
-          payload:response
-        })
+          type: 'saveStoreList',
+          payload: response,
+        });
+        return response.result;
       }
     },
     // 获取人气商家
-    *getHotStoreList(_,{call,put}){
-      const response =yield call(getHotStoreList,_);
-      console.log(response)
-      if(response.code==200){
+    *getHotStoreList({ payload }, { call, put }) {
+      const response = yield call(getHotStoreList, payload);
+      console.log(response);
+      if (response.code == 200) {
         yield put({
-          type:'saveHotStoreList',
-          payload:response
-        })
+          type: 'saveHotStoreList',
+          payload: response,
+        });
       }
     },
     // 获取全部的商家列表
-    *getAllAppHotStores({payload},{call,put}){
-      const response =yield call(getAllAppHotStores,payload);
-      if(response.code==200){
+    *getAllAppHotStores({ payload }, { call, put }) {
+      const response = yield call(getAllAppHotStores, payload);
+      if (response.code == 200) {
         yield put({
-          type:'saveAllAppHotStores',
-          payload:response
-        })
+          type: 'saveAllAppHotStores',
+          payload: response,
+        });
       }
-      return response
+      return response;
     },
     // 获取品牌信息
-    *getBrandInfo4App({payload},{call,put}){
-      const response =yield call(getBrandInfo4App,payload);
-      if(response.code==200){
+    *getBrandInfo4App({ payload }, { call, put }) {
+      const response = yield call(getBrandInfo4App, payload);
+      if (response.code == 200) {
         yield put({
-          type:'saveBrandInfo4App',
-          payload:response
-        })
+          type: 'saveBrandInfo4App',
+          payload: response,
+        });
       }
     },
-    *getStoreListByBrandId4App({payload},{call,put}){
-      const response =yield call(getStoreListByBrandId4App,payload);
-      if(response.code==200){
+    *getStoreListByBrandId4App({ payload }, { call, put }) {
+      const response = yield call(getStoreListByBrandId4App, payload);
+      if (response.code == 200) {
         yield put({
-          type:'saveStoreListByBrandId4App',
-          payload:response
-        })
+          type: 'saveStoreListByBrandId4App',
+          payload: response,
+        });
       }
     },
     // 获取门店标签
-    *getAllUsedTags(_,{call,put}){
-      const response =yield call(getAllUsedTags,_);
-      console.log(response)
-      if(response.code==200){
+    *getAllUsedTags(_, { call, put }) {
+      const response = yield call(getAllUsedTags, _);
+      console.log(response);
+      if (response.code == 200) {
         yield put({
-          type:'saveAllUsedTags',
-          payload:response
-        })
+          type: 'saveAllUsedTags',
+          payload: response,
+        });
       }
     },
     *clearStroeList(_, { put }) {
       yield put({
-        type: 'clearSList'
-      })
+        type: 'clearSList',
+      });
     },
   },
-  
+
   reducers: {
     // 获取门店列表
-    saveStoreList(state,response){
-      return{
+    saveStoreList(state, response) {
+      return {
         ...state,
-        StoreList:response.payload.result.appStores,
-        haveNext:response.payload.result.haveNext,
-        
-      }
+        StoreList: response.payload.result.appStores,
+        haveNext: response.payload.result.haveNext,
+      };
     },
     // 获取人气商家
-    saveHotStoreList(state,response){
-      return{
+    saveHotStoreList(state, response) {
+      return {
         ...state,
-        HotStoreList:response.payload.result.storeList
-      }
+        HotStoreList: response.payload.result.storeList,
+      };
     },
-    saveAllAppHotStores(state,response){
-      return{
+    saveAllAppHotStores(state, response) {
+      return {
         ...state,
-        AllAppHotStores:response.payload.result,
-        haveNext:response.payload.result.haveNext,
-        
-      }
+        AllAppHotStores: response.payload.result,
+        haveNext: response.payload.result.haveNext,
+      };
     },
     // 获取品牌信息
-    saveBrandInfo4App(state,response){
-      return{
+    saveBrandInfo4App(state, response) {
+      return {
         ...state,
-        BrandInfo4App:response.payload.result.brandInfoVo
-      }
+        BrandInfo4App: response.payload.result.brandInfoVo,
+      };
     },
-    saveStoreListByBrandId4App(state,response){
-      return{
+    saveStoreListByBrandId4App(state, response) {
+      return {
         ...state,
-        StoreListByBrandId4App:response.payload.result.appStores
-      }
+        StoreListByBrandId4App: response.payload.result.appStores,
+      };
     },
-    saveAllUsedTags(state,response){
-      return{
+    saveAllUsedTags(state, response) {
+      return {
         ...state,
-        AllUsedTags:response.payload.result.productTagInfoBos
-      }
+        AllUsedTags: response.payload.result.productTagInfoBos,
+      };
     },
     clearSList(state) {
       return {
         ...state,
         StoreList: null,
         haveNext: true,
-      }
-    }
+      };
+    },
   },
 };

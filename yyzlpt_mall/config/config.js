@@ -46,8 +46,8 @@ export default {
   },
   proxy: {
     '/api': {
-      // target: 'http://www.zhejiangjiankang.com:9901/mall-api/',
-      target: 'http://36.155.127.23:46103/',
+      target: 'http://www.zhejiangjiankang.com:9901/mall-api/',
+      // target: 'http://36.155.127.23:46103/',
       pathRewrite: { '^/api': '' },
       changeOrigin: true,
     },
@@ -85,7 +85,7 @@ export default {
     '@': resolve('src'),
     components: resolve('src/components'),
     utils: resolve('src/utils'),
-    assets:resolve('src/assets')
+    assets: resolve('src/assets'),
   },
   base: '/mall/',
   publicPath: env.PUBLIC_PATH,
