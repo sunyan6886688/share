@@ -1,0 +1,420 @@
+// @base: #0C66FF;
+/* 定义多个全局样式 */
+.orderBox {
+  width: 100%;
+  height: 100%;
+  background: rgba(241, 242, 244, 1);
+
+  .statuScolor {
+    display: flex;
+    height: 144px;
+    font-size: 32px;
+    background: rgba(204, 230, 255, 1);
+    align-items: center;
+    justify-content: center;
+    color: #0C66FF;
+    font-weight: 600;
+  }
+
+  .orderStatus {
+    height: 144px;
+    background: rgba(204, 230, 255, 1);
+    text-align: center;
+    padding: 28px 0;
+
+    p {
+      margin: 0 auto;
+      color: rgba(12, 102, 255, 1);
+
+    }
+
+    :first-of-type {
+      font-size: 32px;
+      font-family: PingFangSC-Semibold;
+      font-weight: 600;
+      line-height: 48px;
+    }
+
+    :last-of-type {
+      font-size: 24px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      line-height: 40px;
+    }
+  }
+
+  // 订单内容
+  .orderContent {
+    background-color: #F1F2F4;
+
+    ul {
+      margin: 0 24px;
+      padding-top: 24px;
+
+      .CTCard {
+        :global {
+          .am-list-body,
+          .am-list-line {
+            border: 0;
+          }
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          clear: both;
+          visibility: hidden;
+          height: 0;
+        }
+
+        padding: 0 16px 0 16px;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 16px;
+        margin-bottom: 24px;
+
+        .CTName {
+          height: 84px;
+          border-bottom: 1px solid #F1F2F4;
+
+          >h3 {
+            display: inline-block;
+            height: 44px;
+            font-size: 28px;
+            font-weight: 400;
+            color: #0A1F44;
+            line-height: 44px;
+            vertical-align: top;
+            padding-top: 20px;
+            font-family: PingFangSC-Regular;
+          }
+
+          span {
+            display: inline-block;
+            margin-top: 18px;
+            width: 48px;
+            height: 48px;
+            background: url('../../../assets/OrderDetails/Rightarrow@2x.png') no-repeat;
+            vertical-align: top;
+            background-size: 48px 48px;
+          }
+        }
+
+        .CTPrice {
+          dl {
+            position: relative;
+            padding: 25px 0;
+            height: 110px;
+
+            dt {
+              display: inline-block;
+              width: 80px;
+              height: 80px;
+              border-radius: 8px;
+              vertical-align: top;
+
+              img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+              }
+            }
+
+            >dd {
+              position: absolute;
+              top: 20px;
+              left: 80px;
+              width: 320px;
+              font-size: 28px;
+              margin-left: 16px;
+              font-weight: 600;
+              font-family: PingFangSC-Semibold;
+              color: rgba(10, 31, 68, 1);
+              line-height: 44px;
+              vertical-align: top;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+              /* autoprefixer: off */
+              -webkit-box-orient: vertical;
+              /* autoprefixer: on */
+            }
+
+            .CTMoney {
+              position: absolute;
+              right: 0;
+              top: 25px;
+              width: 200px;
+              line-height: 40px;
+              font-size: 28px;
+              text-align: right;
+              margin-right: 16px;
+
+              dd {
+                width: 100%;
+                height: 44px;
+                font-size: 28px;
+                font-family: PingFangSC-Regular;
+                font-weight: 400;
+                color: rgba(83, 98, 124, 1);
+                line-height: 44px;
+              }
+
+              dd:nth-child(2) {
+                width: 100%;
+                height: 44px;
+                font-size: 28px;
+                font-family: PingFangSC-Regular;
+                font-weight: 400;
+                color: rgba(166, 174, 188, 1);
+                line-height: 44px;
+              }
+            }
+          }
+        }
+
+        .serviceType {
+          position: relative;
+          height: 64px;
+
+          >span {
+            position: absolute;
+            top: 4px;
+            left: 96px;
+            font-weight: 400;
+            background: rgba(248, 249, 251, 1);
+            border-radius: 18px;
+            font-size: 20px;
+            padding: 4px 18px;
+            color: rgba(138, 148, 166, 1);
+          }
+        }
+
+        div:first-child {
+          color: rgba(10, 31, 68, 1);
+          font-weight: 600;
+        }
+
+        // 确认码
+        .CTLeft {
+          float: left;
+          width: 150px;
+          font-size: 28px;
+          font-family: PingFangSC-Semibold;
+          color: rgba(10, 31, 68, 1);
+          padding: 36px 8px;
+          line-height: 44px;
+        }
+
+        .CTRight {
+          float: left;
+          font-size: 48px;
+          font-family: PingFangSC-Semibold;
+          font-weight: 600;
+          color: rgba(12, 102, 255, 1);
+          padding: 32px 24px;
+          line-height: 52px;
+        }
+
+        .CTRightUse {
+          float: right;
+          font-size: 28px;
+          font-family: PingFangSC-Regular;
+          font-weight: 400;
+          color: rgba(166, 174, 188, 1);
+          line-height: 44px;
+          padding: 36px 16px 36px 0;
+        }
+
+        // 订单信息 
+        .CTInfoList {
+          height: 100px;
+          border-bottom: 1px solid #F1F2F4;
+
+          :global {
+            .am-list-item .am-input-label {
+              font-size: 28px;
+              font-family: PingFangSC-Semibold;
+              font-weight: 600;
+              color: rgba(10, 31, 68, 1);
+              line-height: 44px;
+            }
+
+            .am-list-item .am-input-control input {
+              font-size: 28px;
+              font-family: PingFangSC-Regular;
+              font-weight: 400;
+              color: rgba(12, 102, 255, 1);
+              line-height: 44px;
+            }
+
+            .am-list-item.am-input-item {
+              padding: 0;
+            }
+
+          }
+
+          .CTInfoLeft {
+            float: left;
+            width: 150px;
+            font-size: 28px;
+            line-height: 44px;
+            padding: 24px 8px;
+          }
+
+          // .CTInfoRight {
+          //     float: left;
+          //     font-size: 28px;
+          //     font-weight: 400;
+          //     color: rgba(83, 98, 124, 1);
+          //     line-height: 44px;
+          //     padding: 24px 24px;
+          // }
+        }
+
+
+        // 地址
+        .CTAdLeft {
+          float: left;
+          width: 384px;
+          padding: 16px 0;
+
+          h3 {
+            font-size: 32px;
+            font-family: PingFangSC-Semibold;
+            font-weight: 600;
+            color: rgba(10, 31, 68, 1);
+            line-height: 48px;
+            padding: 8px 0;
+          }
+
+          dl {
+            position: relative;
+
+            dt {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 40px;
+              height: 40px;
+              background: url('../../../assets/OrderDetails/Left@2x.png');
+              background-size: 40px 40px;
+            }
+
+            dd {
+              padding-left: 54px;
+            }
+
+            dd:first-of-type {
+              height: 44px;
+              font-size: 28px;
+              font-family: PingFangSC-Regular;
+              font-weight: 400;
+              color: rgba(83, 98, 124, 1);
+              line-height: 44px;
+            }
+
+            dd:last-of-type {
+              height: 40px;
+              font-size: 24px;
+              font-family: PingFangSC-Regular;
+              font-weight: 400;
+              color: rgba(138, 148, 166, 1);
+              line-height: 40px;
+            }
+          }
+        }
+
+        .CTAdRight {
+          position: relative;
+          height: 174px;
+
+          span {
+            position: absolute;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: url('../../../assets/OrderDetails/Phone@2x.png');
+            background-size: 48px 48px;
+          }
+        }
+      }
+
+      .attention {
+        :first-of-type {
+          margin-top: 5px;
+          display: inline-block;
+          width: 32px;
+          height: 32px;
+          background: url('../../../assets/OrderDetails/Small@3x.png') no-repeat;
+          background-size: 32px 32px;
+          vertical-align: top;
+        }
+
+        :last-of-type {
+          vertical-align: top;
+          display: inline-block;
+          font-size: 24px;
+          font-family: PingFangSC-Regular;
+          font-weight: 400;
+          color: rgba(12, 102, 255, 1);
+          line-height: 40px;
+          padding-left: 5px;
+        }
+      }
+    }
+
+
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 96px;
+    line-height: 54px;
+    text-align: right;
+    background: rgba(255, 255, 255, 1);
+    padding: 0;
+
+    .footerLeft {
+      float: left;
+      font-size: 32px;
+      font-family: PingFangSC-Semibold;
+      font-weight: 600;
+      color: rgba(240, 115, 0, 1);
+      line-height: 96px;
+      padding-left: 24px;
+    }
+
+    .footerLeft::first-letter {
+      font-size: 20px;
+    }
+
+    .footerRight,
+    .footerRightBan {
+      float: right;
+      width: 320px;
+      height: 100%;
+      font-size: 32px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 1);
+      text-align: center;
+      line-height: 300%;
+    }
+
+    .footerRightBan {
+      background-color: #E1E4E8;
+      color: #A6AEBC;
+    }
+
+    .footerRight {
+      background-color: #007FFF;
+    }
+  }
+
+}

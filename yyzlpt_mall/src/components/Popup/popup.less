@@ -1,0 +1,31 @@
+
+.model {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  .modelMask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(10, 31, 68, 0.5);
+  }
+  .base {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    z-index: 10;
+    pointer-events:auto; 
+  }
+  .isCenter {
+    position: absolute;
+    width: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}

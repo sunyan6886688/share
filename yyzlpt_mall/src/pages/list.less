@@ -1,0 +1,284 @@
+//列表title
+.listTitle {
+    height: 92px;
+    overflow: hidden;
+    padding: 0 24px;
+    margin-bottom: 24px;
+
+    span {
+        margin-top: 40px;
+        float: left;
+        height: 52px;
+        font-size: 40px;
+        font-family: 'PingFangSC-Semibold';
+        font-weight: 600;
+        color: rgba(10, 31, 68, 1);
+        line-height: 52px;
+    }
+
+    b {
+        float: right;
+        height: 44px;
+        font-size: 28px;
+        font-family: PingFangSC-Regular;
+        font-weight: 400;
+        color: rgba(12, 102, 255, 1);
+        line-height: 44px;
+        margin-top: 44px
+    }
+}
+// 列表title 2
+.listTitleT {
+    height: 88px;
+    overflow: hidden;
+    padding: 0 24px;
+    margin-bottom: 16px;
+
+    span {
+        margin-top: 40px;
+        float: left;
+        height: 48px;
+        font-size: 32px;
+        font-family: 'PingFangSC-Semibold';
+        font-weight: 600;
+        color: rgba(10, 31, 68, 1);
+        line-height: 48px;
+    }
+
+    b {
+        float: right;
+        height: 44px;
+        font-size: 28px;
+        font-family: PingFangSC-Regular;
+        font-weight: 400;
+        color: rgba(12, 102, 255, 1);
+        line-height: 44px;
+        margin-top: 42px
+    }
+}
+//列表
+.list {
+    padding: 0 24px;
+    &.tabShowCls{
+        padding-top: 24px ;
+    }
+    li {
+        height: 208px;
+        padding: 24px 16px;
+        background: #fff;
+        margin-bottom: 24px;
+        border-radius: 16px;
+        .liLeft {
+            display: block;
+            width: 160px;
+            height: 160px;
+            border-radius: 8px;
+            float: left;
+            margin-right: 16px;
+            position: relative;
+
+            span {
+                position: relative;
+                width: 40px;
+                height: 40px;
+                top: 0;
+                left: 8px;
+                display: block;
+                text-align: center;
+                line-height: 34px;
+                color: #fff;
+                font-size: 20px;
+            }
+        }
+
+        .liRight {
+            float: left;
+            width: 494px;
+            overflow: hidden;
+
+            .liTitle {
+                width: 494px;
+                height: 48px;
+                font-size: 32px;
+                margin-bottom: 16px;
+                font-family: 'PingFangSC-Semibold';
+                font-weight: 600;
+                color: rgba(10, 31, 68, 1);
+                line-height: 48px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .liPrice {
+                width: 494px;
+                height: 40px;
+                font-size: 24px;
+                margin-bottom: 16px;
+                font-family: 'PingFangSC-Regular';
+                font-weight: 400;
+                line-height: 40px;
+
+                span {
+                    display: inline-block;
+                    padding-right: 8px;
+                    height: 40px;
+
+                    font-weight: 400;
+                    color: rgba(240, 115, 0, 1);
+
+                    background: url(../assets/fenge.png) no-repeat center right;
+                    background-size: 2px 24px;
+                }
+
+                b {
+                    display: inline-block;
+                    padding: 0 8px;
+                    color: rgba(10, 31, 68, 1);
+                    background: url(../assets/fenge.png) no-repeat center right;
+                    background-size: 2px 24px;
+                }
+
+                i {
+                    display: inline-block;
+                    padding-left: 8px;
+                    color: rgba(138, 148, 166, 1);
+
+                }
+            }
+
+            .dec {
+                width: 494px;
+                height: 40px;
+                font-size: 24px;
+                font-family: 'PingFangSC-Regular';
+                font-weight: 400;
+                color: rgba(138, 148, 166, 1);
+                line-height: 40px;
+
+                span {
+                    width: 56px;
+                    height: 28px;
+                    text-align: center;
+                    line-height: 28px;
+                    background: rgba(255, 93, 93, 1);
+                    border-radius: 4px;
+                    color: #fff;
+                    float: left;
+                    margin-right: 8px;
+                    margin-top: 6px;
+                }
+
+                p {
+                    width: 430px;
+                    height: 40px;
+                    float: left;
+                    font-size: 24px;
+                    color: rgba(138, 148, 166, 1);
+                    line-height: 40px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+// 服务列表
+.serverList {
+    li {
+        position: relative;
+        height: 208px;
+        width: 702px;
+        padding: 24px 16px;
+        overflow: hidden;
+        background: #fff;
+        margin: 0 auto 24px;
+        border-radius: 16px;
+
+        .liLeft {
+            width: 160px;
+            height: 160px;
+            border-radius: 8px;
+            float: left;
+            margin-right: 16px;
+            position: relative;
+
+        }
+
+        .liRight {
+            float: left;
+            width: 352px;
+            overflow: hidden;
+
+            .liTitle {
+                width: 302px;
+                margin-bottom: 16px;
+                height: 96px;
+                font-family: 'PingFangSC-Semibold';
+                font-weight: 600;
+                color: rgba(10, 31, 68, 1);
+                line-height: 48px;
+                font-size: 28px;
+                font-weight: 600;
+                color: rgba(10, 31, 68, 1);
+                
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                /* autoprefixer: off */
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                span {
+                    width: 56px;
+                    height: 28px;
+                    display: inline-block;
+                    text-align: center;
+                    line-height: 28px;
+                    background: rgba(255, 93, 93, 1);
+                    border-radius: 4px;
+                    color: #fff;
+                    margin-right: 8px;
+                    margin-top: 6px;
+                }
+
+
+
+
+
+            }
+
+            
+        }
+        .num {
+            position: absolute;
+            width: 156px;
+            font-size: 24px;
+            top: 24px;
+            right: 16px;
+            font-family: PingFangSC-Regular;
+            font-weight: 400;
+            color: rgba(138, 148, 166, 1);
+            line-height: 48px;
+            text-align: right;
+        }
+        .liPrice {
+            height: 48px;
+            font-size: 32px;
+            font-weight: 600;
+            color: rgba(240, 115, 0, 1);
+            line-height: 48px;
+            width: 302px;
+        }
+    }}
+
+    footer {
+        width: 100%;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        color: rgba(166, 174, 188, 1);
+        padding: 24px 0 48px;
+        font-size:24px;
+    }
