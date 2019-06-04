@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Toast } from 'antd-mobile';
 import styles from './RegisterSecond.less';
 import Agreement from './Agreement';
 import AlertModal from '@/Components/AlertModal';
@@ -18,8 +19,10 @@ export default class RegisterSecond extends React.PureComponent {
         tel: '',
         isTelValid: false,
         code: '',
+        isCodeValid: false,
       };
       this.timer = null;
+      this.isSubmitting = false;
     } 
 
     componentWillUnmount() {
@@ -39,11 +42,17 @@ export default class RegisterSecond extends React.PureComponent {
     }
 
     handleSubmit = () => {
+      if (this.isSubmitting) return;
+      this.isSubmitting = true;
+      // sumbit
       this.setState({isAlertModalShow: true});
     }
 
     handleGetCode = () => {
+      if (this.isSubmitting) return;
+      this.isSubmitting = true;
       // test tel code
+      this.isSubmitting = false;
       this.handleCount();
     }
 
@@ -64,7 +73,7 @@ export default class RegisterSecond extends React.PureComponent {
 
     handelTelChange = e => {
       const {value} = e.target;
-      if (value.length === 11 && /1(3|4|5|6|7|8|9)\d{9}/.test(value)) {
+      if (value.length === 11 && /^1(3|4|5|6|7|8|9)\d{9}$/.test(value)) {
         this.setState({
           tel: value,
           isTelValid: true,
@@ -79,7 +88,17 @@ export default class RegisterSecond extends React.PureComponent {
 
     handelCodeChange = e => {
       const {value} = e.target;
-      this.setState({code: value});
+      if (value.length === 6 && /^\d{6}$/) {
+        this.setState({
+          code: value,
+          isCodeValid: true,
+        })
+      } else {
+        this.setState({
+          code: value,
+          isCodeValid: false,
+        })
+      }
     }
 
     render() {
@@ -93,6 +112,7 @@ export default class RegisterSecond extends React.PureComponent {
           isTelValid,
           tel,
           code,
+          isCodeValid
         } = this.state;
 
         return (
@@ -152,7 +172,7 @@ export default class RegisterSecond extends React.PureComponent {
                 <button
                   className={styles.btn}
                   type="button"
-                  disabled={!isChecked || !isTelValid || !code}
+                  disabled={!isChecked || !isTelValid || !isCodeValid}
                   onClick={this.handleSubmit}>
                   同意协议并注册
                 </button>

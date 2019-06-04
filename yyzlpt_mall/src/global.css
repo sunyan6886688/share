@@ -372,4 +372,21 @@ body {
   transition: opacity 150ms transform 150ms
 }
 
+/* picker */
+.am-picker-popup-mask {
+  background-color: rgba(10, 31, 68, 0.5) !important;
+}
+.am-picker-popup-item {
+  color: #007FFF !important;
+}
+.am-picker-popup-header {
+  background-image: none !important;
+  border-bottom: 1px solid #f1f2f4 !important;
+}
+.am-picker-col-indicator {
+  border-top: 1px solid #f1f2f4 !important;
+  border-bottom: 1px solid #f1f2f4 !important;
+}
+
+
 

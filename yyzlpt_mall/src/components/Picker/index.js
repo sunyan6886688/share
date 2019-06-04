@@ -4,7 +4,8 @@ import AndroidPicker from './AndroidPicker';
 
 
 export default class Picker extends PureComponent {
-    constructor() {
+    constructor(props) {
+        super(props);
         this.isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); 
     }
     render() {
