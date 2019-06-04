@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React, { PureComponent } from 'react';
 import styles from './Login.less';
 import { Toast } from 'antd-mobile';
-
+import router from 'umi/router';
 
 class Index extends PureComponent {
   state = {
@@ -10,10 +10,11 @@ class Index extends PureComponent {
     PhoneCode: '',
     clickFlage: true,
     tips: '获取动态码',
-    loginType: '1',
+    loginType: '2',
     isRightIdCard:false,
-    isRightPsw:false,
-    isRightPhoneCode:false
+    isRightPsd:false,
+    isRightPhoneCode:false,
+    psdFlage:false
   };
   changeIDcard = e => {
     this.setState({
@@ -26,7 +27,7 @@ class Index extends PureComponent {
     if(!value){
       return false
     }
-    const flage=patternMainLand.test(value)
+    const flage=patternMainLand.test(value)&&value.length>7
     if (flage) {
       this.setState({
         isRightIdCard:true
@@ -73,46 +74,76 @@ class Index extends PureComponent {
     })
   }
   
-  cheackIDcard = (e) => {
-    const patternMainLand = /^[A-Za-z0-9]+$/
-    const value=e.target.value
-    if(!value){
-      return false
-    }
-    const flage=patternMainLand.test(value)
-    if (flage) {
+  // cheackIDcard = (e) => {
+  //   const patternMainLand = /^[A-Za-z0-9]+$/
+  //   const value=e.target.value
+  //   if(!value){
+  //     return false
+  //   }
+  //   const flage=patternMainLand.test(value)&&value.length>7
+  //   if (flage) {
+  //     this.setState({
+  //       isRightIdCard:true
+  //     })
+  //   } else {
+  //     Toast.info('请输入合法的证件号', 1);
+  //     this.setState({
+  //       isRightIdCard:false
+  //     })
+  //   }
+  // }
+  // checkPhoneCode=(e)=>{
+  //   const patternMainLand = /^[0-9]+$/
+  //   const value=e.target.value
+  //   if(!value){
+  //     return false
+  //   }
+  //   const flage=patternMainLand.test(value)&&value.length==6
+  //   if (flage) {
+  //     this.setState({
+  //       isRightPhoneCode:true
+  //     })
+  //   } else {
+  //     Toast.info('请输入合法的动态码', 1);
+  //     this.setState({
+  //       isRightPhoneCode:false
+  //     })
+  //   }
+  // }
+  clearIDcard=()=>{
+    this.setState({
+      IDcard:''
+    })
+  }
+  changePsd=(e)=>{
+    this.setState({
+      Psd:e.target.value
+    })
+    if(e.target.value.length>7&&e.target.value.length<20){
       this.setState({
-        isRightIdCard:true
+        isRightPsd:true
       })
-    } else {
-      Toast.info('请输入合法的证件号', 1);
+    }else{
       this.setState({
-        isRightIdCard:false
+        isRightPsd:false
       })
     }
   }
-  checkPhoneCode=(e)=>{
-    const patternMainLand = /^[0-9]+$/
-    const value=e.target.value
-    if(!value){
-      return false
-    }
-    const flage=patternMainLand.test(value)&&value.length==6
-    if (flage) {
-      this.setState({
-        isRightPhoneCode:true
-      })
-    } else {
-      Toast.info('请输入合法的动态码', 1);
-      this.setState({
-        isRightPhoneCode:false
-      })
-    }
+  toRegindter=()=>{
+    router.push({
+      pathname:'/share/register',
+    });
+  }
+  showHidenPsd=()=>{
+    const flage=this.state.psdFlage
+    this.setState({
+      psdFlage:!flage
+    })
   }
   render() {
-    const{PhoneCode,IDcard,clickFlage,loginType,isRightIdCard,isRightPhoneCode,isRightPsw}=this.state
+    const{PhoneCode,IDcard,psdFlage,clickFlage,loginType,isRightIdCard,isRightPhoneCode,isRightPsd,Psd}=this.state
     const buttonStyles =
-      IDcard &&PhoneCode &&isRightIdCard&&((loginType=='1'&&isRightPhoneCode)||(loginType==2&&isRightPsw))
+      IDcard  &&isRightIdCard&&((loginType=='1'&&isRightPhoneCode&&PhoneCode)||(loginType==2&&isRightPsd&&Psd))
       ? styles.buttonActive : styles.button;
     const spanStyles =
       IDcard.length > 7 &&clickFlage && isRightIdCard
@@ -134,15 +165,18 @@ class Index extends PureComponent {
               <li className={styles.userName}>
                 <input placeholder="身份证/台胞证/港澳证"
                   onChange={this.changeIDcard}
-                  onBlur={this.cheackIDcard}
+                  // onBlur={this.cheackIDcard}
                   maxLength={20}
                   value={IDcard}
                 />
+                <span
+                onClick={this.clearIDcard}
+                ></span>
               </li>
               <li className={styles.code}>
                 <input placeholder="短信动态码"
                  onChange={this.changePhoneCode} 
-                 onBlur={this.checkPhoneCode}
+                //  onBlur={this.checkPhoneCode}
                  maxLength={6}
                 value={PhoneCode}
                  />
@@ -152,31 +186,49 @@ class Index extends PureComponent {
               </li>
               <div className={styles.tips}>
                 {!clickFlage?<p>动态码已发送到手机138****0571</p>:''}
-                <b>没有账号？点此注册</b>
+                <b onClick={this.toRegindter}>没有账号？点此注册</b>
               </div>
             </ul> : ''}
           {this.state.loginType == '2' ?
-            <ul className={styles.pswLoginBox}>
+            <ul className={styles.psdLoginBox}>
               <li className={styles.userName}>
                 <input placeholder="身份证/台胞证/港澳证" 
-                onChange={this.changeIDcard} 
-                onBlur={this.cheackIDcard}
+                onChange={this.changeIDcard}
+                // onBlur={this.cheackIDcard}
                 maxLength={20}
                 value={IDcard}
                 />
+                 <span
+                onClick={this.clearIDcard}
+                ></span>
               </li>
               <li className={styles.code}>
-                <input placeholder="短信动态码" onChange={this.changePhoneCode} />
+              {
+                  psdFlage?<input placeholder="密码" 
+                  onChange={this.changePsd} 
+                  maxLength={20}
+                  type='text'
+                  value={Psd}
+                  />:<input placeholder="密码" 
+                  onChange={this.changePsd} 
+                  maxLength={20}
+                  type='password'
+                  value={Psd}
+                  />
+                }
+                 <span
+                 className={psdFlage?styles.show:styles.hiden}
+                onClick={this.showHidenPsd}
+                ></span>
               </li>
               <div className={styles.tips}>
-                <b>没有账号？点此注册</b>
+                <b onClick={this.toRegindter}>没有账号？点此注册</b>
               </div>
             </ul> : ''}
           <div className={buttonStyles}>登录</div>
           {
             loginType == '2' ? <p className={styles.tipst}>注：未设置密码的用户，可用动态码登录后去设置密码页面进行设置；已在12580网站(http://www.zj12580.cn)注册的用户，密码与原先一致。</p> : ''
           }
-
         </div>
       </div>
     );
