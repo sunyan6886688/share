@@ -21,7 +21,8 @@ class Index extends PureComponent {
     psdFlage: false
   };
   componentDidMount = () => {
-    
+    const url=window.location.href
+    localStorage.setItem('prevPage',this.getQueryString('prevPage'))
     var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
     if (ua.match(/MicroMessenger/i) == "micromessenger") {
       const code= this.getQueryString('code')

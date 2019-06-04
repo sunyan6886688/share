@@ -15,7 +15,8 @@ import cs from 'classnames';
 import jkdh from '@/utils/jkdh'
 import { Toast } from 'antd-mobile';
 import ImgPreview from '@/components/ImgPreview';
-import userStatisticPage from 'utils/utils'
+import userStatisticPage from 'utils/utils';
+import { env } from '../../../../config/env';
 // import FastClick from 'fastclick'
 // FastClick.attach(document.body)
 let startTime=''
@@ -192,46 +193,8 @@ class Index extends PureComponent {
         }
       })
     } else {
-      if (this.numGetAut <= 3) {
-        Toast.loading('登录中');
-        this.getAuthCode()
-      }
+     window.location.href=env.PUBLIC_PATH+'share/login?prevPage='+window.location.href
     }
-  }
-  getAuthCode = () => {
-    this.numGetAut++
-    const { dispatch } = this.props
-    jkdh.auth.getAuthCode({
-      scope: "snsapi_base",
-      appId: "p9gbs1lwjzt1u8hstio2sjbivl19wgkx",
-    }).then(res => {
-      dispatch({
-        type: 'order/login',
-        payload: {
-          code: res.res.code
-        }
-      }).then((data) => {
-        if (data.result.isLogin) {
-          Toast.hide()
-          router.push({
-            pathname: '/share/ProductOrder/AffirmOrder',
-            query: {
-              offerId: this.state.offerId
-            }
-          })
-        } else if (!data.result.isLogin && this.numGetAut <= 3) {
-          this.getAuthCode()
-        } else {
-          Toast.hide()
-          Toast.fail('授权失败，账号异常请联系客服或尝试重启应用');
-          this.setState({
-            nextFlage: false
-          })
-        }
-      })
-    }).catch(resulet => {
-      Toast.hide()
-    })
   }
   // 图片放大
   magnify = () => {

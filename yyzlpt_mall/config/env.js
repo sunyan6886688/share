@@ -3,6 +3,7 @@ const configs = {
     local: {
         HTTP_SERVER: '/api/',
         debug:true,
+        PUBLIC_PATH: 'http://localhost:8099/mall/',
      },
     // 开发
     develop: {
