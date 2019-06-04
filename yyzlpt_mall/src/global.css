@@ -317,6 +317,13 @@ body {
   margin-inline-end: 40px;
 }
 
+button{
+  background:transparent;
+  border: none
+}
+input{
+  border: none
+}
 
 
 /* modal 动画 */
