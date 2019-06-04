@@ -3,14 +3,17 @@ import React, { PureComponent } from 'react';
 import styles from './Login.less';
 import { Toast } from 'antd-mobile';
 import router from 'umi/router';
-
+import { connect } from 'dva';
+@connect(({  }) => ({
+  
+}))
 class Index extends PureComponent {
   state = {
     IDcard: '',
     PhoneCode: '',
     clickFlage: true,
     tips: '获取动态码',
-    loginType: '2',
+    loginType: '1',//1动态吗登录 2密码登录
     isRightIdCard:false,
     isRightPsd:false,
     isRightPhoneCode:false,
@@ -140,6 +143,22 @@ class Index extends PureComponent {
       psdFlage:!flage
     })
   }
+  loginButton=()=>{
+    const{PhoneCode,IDcard,psdFlage,clickFlage,loginType,isRightIdCard,isRightPhoneCode,isRightPsd,Psd}=this.state
+    const flage =IDcard  &&isRightIdCard&&((loginType=='1'&&isRightPhoneCode&&PhoneCode)||(loginType==2&&isRightPsd&&Psd))
+     if(!flage){
+       return false
+     }
+     const{dispatch}=this.props
+     if(loginType==1){
+      dispatch({
+
+      })
+     }else if(loginType==2){
+
+     }
+    
+  }
   render() {
     const{PhoneCode,IDcard,psdFlage,clickFlage,loginType,isRightIdCard,isRightPhoneCode,isRightPsd,Psd}=this.state
     const buttonStyles =
@@ -166,7 +185,7 @@ class Index extends PureComponent {
                 <input placeholder="身份证/台胞证/港澳证"
                   onChange={this.changeIDcard}
                   // onBlur={this.cheackIDcard}
-                  maxLength={20}
+                  maxLength={18}
                   value={IDcard}
                 />
                 <span
@@ -225,7 +244,9 @@ class Index extends PureComponent {
                 <b onClick={this.toRegindter}>没有账号？点此注册</b>
               </div>
             </ul> : ''}
-          <div className={buttonStyles}>登录</div>
+          <div className={buttonStyles}
+          onClick={this.loginButton}
+          >登录</div>
           {
             loginType == '2' ? <p className={styles.tipst}>注：未设置密码的用户，可用动态码登录后去设置密码页面进行设置；已在12580网站(http://www.zj12580.cn)注册的用户，密码与原先一致。</p> : ''
           }
