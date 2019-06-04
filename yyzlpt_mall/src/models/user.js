@@ -1,7 +1,7 @@
 
 import { message } from 'antd';
 import {
-  
+    userLogin
 } from '@/services/user';
 export default {
   namespace: 'user',
@@ -11,7 +11,14 @@ export default {
   },
 
   effects: {
-   
+       // 获取区域列表
+    *userLogin({ payload }, { call, put }) {
+        console.log('99999')
+        const response = yield call(userLogin, payload)
+        return response
+  
+      },
+    
   },
 
   reducers: {

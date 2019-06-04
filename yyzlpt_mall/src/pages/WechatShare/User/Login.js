@@ -4,6 +4,7 @@ import styles from './Login.less';
 import { Toast } from 'antd-mobile';
 import router from 'umi/router';
 import { connect } from 'dva';
+import md5 from 'js-md5'
 @connect(({  }) => ({
   
 }))
@@ -149,13 +150,19 @@ class Index extends PureComponent {
      if(!flage){
        return false
      }
+     
      const{dispatch}=this.props
      if(loginType==1){
-      dispatch({
-
-      })
+      
      }else if(loginType==2){
-
+      dispatch({
+        type:'user/userLogin',
+        payload:{
+          patientCard:this.state.IDcard,
+          password:md5(this.state.Psd),
+          openId:""
+        }
+      })
      }
     
   }
@@ -214,7 +221,7 @@ class Index extends PureComponent {
                 <input placeholder="身份证/台胞证/港澳证" 
                 onChange={this.changeIDcard}
                 // onBlur={this.cheackIDcard}
-                maxLength={20}
+                maxLength={18}
                 value={IDcard}
                 />
                  <span
