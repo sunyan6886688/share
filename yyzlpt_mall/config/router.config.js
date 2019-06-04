@@ -30,6 +30,9 @@ export default [
       { path: '/ProductOrder/ProductPriew', component: './ProductOrder/ProductPriew', title: '商品详情预览' },
       // 分享页面
       { path: '/share/login', component: './WechatShare/User/Login', title: '登录' },
+      { path: '/share/register', redirect: '/share/registerFirst' },
+      { path: '/share/registerFirst', component: './WechatShare/User/RegisterFirst', title: '注册' },
+      { path: '/share/registerSecond', component: './WechatShare/User/RegisterSecond', title: '注册' },
       {
         path: '/share',
         component: '../layouts/HomeAndUser',
