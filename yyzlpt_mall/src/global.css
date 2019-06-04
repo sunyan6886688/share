@@ -395,5 +395,11 @@ input{
   border-bottom: 1px solid #f1f2f4 !important;
 }
 
+select {
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+}
+
 
 

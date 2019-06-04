@@ -7,8 +7,8 @@ import { connect } from 'dva';
 import Picker from '@/components/Picker';
 import options from '@/components/Picker/options.json';
 
+@connect()
 export default class RegisterFirst extends React.PureComponent {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +20,8 @@ export default class RegisterFirst extends React.PureComponent {
       name: '',
       codeNo: '',
     };
+    console.log(props);
+    // this.isSubmitting = false;
   }
 
   handleCloseModal = modalName => {
@@ -51,19 +53,49 @@ export default class RegisterFirst extends React.PureComponent {
   }
 
   hanleCardNoChange = e => {
-    console.log(e.target.value);
-    this.setState({cardNo: e.target.value})
+    const {value} = e.target;
+    if (value === '' || /^[A-Z0-9]+$/.test(value)) {
+      this.setState({cardNo: value})
+    }
   }
 
   hanleNameChange = e => {
-    this.setState({name: e.target.value})
+    const {value} = e.target;
+    if (value === '' || /^[\u4e00-\u9fa5]{1,}$/.test(value)) {
+      this.setState({name: value})
+    }
+  }
+
+  handleClear = fieldName => {
+    this.setState({[fieldName]: ''})
   }
 
   handleSumbit = () => {
     const {idCardType, cardNo} = this.state;
-    if (this.state.idCardType === '1') {
-      // if ()
-    }
+    Toast.loading('loading...', 0);
+    this.props.dispatch({
+      type: 'user/checkCardNo',
+      paload: {
+        patientCard: cardNo
+      }
+    }).then(res => {
+      console.log(res);
+      Toast.hide();
+      if (res.code === '200') {
+        if (res.result) {
+          this.setState({isConfirmModalShow: true});
+        } else {
+          router.replace({pathname: '/share/registerSecond', state: {
+            cardType: this.state.idCardType,
+            patientCard: this.state.cardNo,
+            nation: this.state.nation,
+            realName: this.state.name,
+          }})
+        }
+      } else {
+        Toast.info(res.message)
+      }
+    })
   }
 
   render() {
@@ -102,7 +134,12 @@ export default class RegisterFirst extends React.PureComponent {
             placeholder="请输入证件号码，英文须大写"
             maxLength="18"
             value={cardNo}
-            onChange={this.hanleCardNoChange}/>
+            onInput={this.hanleCardNoChange}/>
+            {
+              cardNo && <button
+                className={styles.clear}
+                onClick={() => this.handleClear('cardNo')}/>
+            }
         </div>
         <div className={styles.formItem}>
           <p className={styles.label} htmlFor="name">真实姓名</p>
@@ -110,9 +147,15 @@ export default class RegisterFirst extends React.PureComponent {
             className={styles.input}
             type="text"
             name="name"
+            maxLength="10"
             placeholder="请输入与证件一致的真实姓名"
             value={name}
             onChange={this.hanleNameChange}/>
+            {
+              name && <button
+                className={styles.clear}
+                onClick={() => this.handleClear('name')}/>
+            }
         </div>
 
         {
