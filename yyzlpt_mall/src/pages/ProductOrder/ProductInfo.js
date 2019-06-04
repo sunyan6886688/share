@@ -271,7 +271,8 @@ class Index extends PureComponent {
     const marketingPrice = productInfoBoById.marketingPrice
       ? productInfoBoById.marketingPrice / 100
       : 0;
-
+      let shareLink=window.location.href
+      shareLink=shareLink.replace('ProductOrder','share/ProductOrder')
     return (
       <WingBlank className={styles.orderBox} style={{ marginLeft: 0, marginRight: 0 }}>
         <div onClick={this.magnify}>
@@ -305,7 +306,7 @@ class Index extends PureComponent {
             <Share
               title={productInfoBoById.offerName}
               desc={productInfoBoById.productIntroduce}
-              link={window.location.href}
+              link={shareLink}
               imageUrl={productInfoImages[0] && productInfoImages[0].imageUrl.path}
             />
           </div>

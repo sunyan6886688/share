@@ -13,12 +13,12 @@ import BannerrImg from '@/assets/noBg.png'
 import { connect } from 'dva';
 import { Carousel, WingBlank, PullToRefresh, ListView } from 'antd-mobile';
 import router from 'umi/router';
-import jkdh from 'utils/jkdh'
 import userStatisticPage from 'utils/utils'
 import Scroll from 'components/Scroll/index'
 import Swiper from 'swiper/dist/js/swiper.js'
 import 'swiper/dist/css/swiper.min.css'
 let allStoreList = []
+let timer=''
 @connect(({ home }) => ({
   AareByParentCode: home.AareByParentCode,
   HomeLableList: home.HomeLableList,
@@ -40,10 +40,10 @@ class Index extends PureComponent {
   componentDidMount = () => {
     this.queryAareByParentCode()
     var mySwiper = new Swiper('.swiper-container', {
-      loop : true,
-      autoplay:true,
-      autoplay:{
-        delay:3000,
+      loop: true,
+      autoplay: true,
+      autoplay: {
+        delay: 3000,
         disableOnInteraction: false,
       },
       pagination: {
@@ -54,30 +54,6 @@ class Index extends PureComponent {
     this.appGetHomeLabelList()
     this.getAppBanners()
     this.queryStore()
-    const { dispatch } = this.props
-    dispatch({
-      type: 'home/createSignature'
-    }).then((res) => {
-      // 注入jsdk 
-      jkdh.config({
-        appId: 'p9gbs1lwjzt1u8hstio2sjbivl19wgkx',
-        timestamp: this.props.createSignature && this.props.createSignature.timestamp,
-        signature: this.props.createSignature && this.props.createSignature.signature,
-        nonceStr: this.props.createSignature && this.props.createSignature.noncestr
-      }).then(() => {
-        jkdh.ready(() => {
-          jkdh.device.getLocation().then(res => {
-            console.log(res);
-            //  const value =JSON.parse(res)
-            localStorage.setItem('UserCityLat', res.res ? res.res.lat||'' : '')
-            localStorage.setItem('UserCityLng', res.res ? res.res.lng ||'': '')
-            localStorage.setItem('UserCity', res.res.cityName ? res.res.cityName.replace('市','') : '')
-            this.queryStore()
-          })
-        })
-      })
-    })
-    // localStorage.setItem('token', 'vF+bQK2NvziCVpPlp55gn9oK1Liy7hcAPN5DIdbklPbZCcLyHjPlCdmaLwQWtipS')
   }
   queryAareByParentCode = () => {
     const { dispatch } = this.props;
@@ -86,15 +62,15 @@ class Index extends PureComponent {
       payload: {
         "areaCode": "330000"
       }
-    }).then((data)=>{
+    }).then((data) => {
       let cityName = localStorage.getItem('UserChooseCity') || localStorage.getItem('UserCity') || '杭州'
-      localStorage.setItem('areaName',cityName)
-      cityName=cityName+'市'
-      data.result.pubAreaBoList.map(item=>{
-      item.areaName==cityName?
-       localStorage.setItem('areaCode',item.areaCode):''
-    })
-      
+      localStorage.setItem('areaName', cityName)
+      cityName = cityName + '市'
+      data.result.pubAreaBoList.map(item => {
+        item.areaName == cityName ?
+          localStorage.setItem('areaCode', item.areaCode) : ''
+      })
+
     })
   }
   // 获取首页门店
@@ -133,10 +109,10 @@ class Index extends PureComponent {
   }
   //分类点击跳转
   toShopList = (item) => {
-    const expand={
-      tagName:item&&item.labelName||''
+    const expand = {
+      tagName: item && item.labelName || ''
     }
-    userStatisticPage(0,'healthCircleToAppEvent',expand,)
+    userStatisticPage(0, 'healthCircleToAppEvent', expand)
     localStorage.setItem("labelName", item ? item.labelName : '全部')
     localStorage.setItem("labelId", item ? item.labelName == '全部' ? '' : item.labelId : '')
     localStorage.setItem("sortType", '1')
@@ -174,44 +150,88 @@ class Index extends PureComponent {
         }
       })
     }
-    return {activity, query};
+    return { activity, query };
   }
+  toAppPage=(url)=>{ 
+    console.log(url)
+    var u = navigator.userAgent;
+    if (/MicroMessenger/gi.test(u)) {
+      // 引导用户在浏览器中打开
+      alert('请在浏览器中打开');
+      return;
+    }
+    var d = new Date();
+    var t0 = d.getTime();
 
-  handleHomeLabelClick = (item )=> {
-    const {url, urlType} = item;
+    if (u.indexOf('iPhone') > -1) {
+      // 最核心的代码-----------
+      var loadDateTime = new Date();
+       timer=window.setTimeout(function () {
+        var timeOutDateTime = new Date();
+        if (timeOutDateTime - loadDateTime < 5000) {
+          window.location = "https://itunes.apple.com/cn/app/%E6%B5%99%E6%B1%9F%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7/id588271688?l=zh&ls=1&mt=8";
+        } else {
+          window.close();
+        }
+      },
+        25);
+      window.location.href = 'zjyygh://zj12580.app/'+url
+    }
+    if (u.indexOf('Android') > -1) {
+      // 最核心的代码-----------
+      var loadDateTime = new Date();
+       timer= window.setTimeout(function () {
+        var timeOutDateTime = new Date();
+        if (timeOutDateTime - loadDateTime < 5000) {
+          window.location = "http://ghws5.zj12580.cn:9901/YYGH_12580_SERVICE/apk/yygh-12580.apk";
+        
+        } else {
+          window.close();
+        }
+      },
+        25);
+      window.location.href = 'zjyygh://zj12580.app/'+url
+    }
+  }
+  handleHomeLabelClick = (item) => {
+
+    const { url, urlType } = item;
     if (!url) {
       this.toShopList(item);
     } else {
-      const expand={
-        tagName:item&&item.labelName||''
+      const expand = {
+        tagName: item && item.labelName || ''
       }
-      userStatisticPage(0,'healthCircleToAppEvent',expand,)
+      userStatisticPage(0, 'healthCircleToAppEvent', expand)
       if (urlType == 3) {
         window.location.href = url;
-      } else {
-        const jumpUrlConfig = this.getJumpUrlConfig(url);  
-        console.log(jumpUrlConfig) 
-        jkdh.ui.jumpToAppPage(jumpUrlConfig);
+      } else if (urlType == 2) {
+        const jumpUrlConfig = this.getJumpUrlConfig(url);
+        window.location.href = jumpUrlConfig.query.contents;
+      } else if (urlType == 1) {
+        this.toAppPage(url)
       }
     }
   }
 
   handleBannerClick = e => {
-    const {id} = e.target.dataset;
-    const expand={
-      bannerID:id
+    const { id } = e.target.dataset;
+    const expand = {
+      bannerID: id
     }
-    userStatisticPage(0,'healthCircleToBannerEvent',expand,)
+    userStatisticPage(0, 'healthCircleToBannerEvent', expand)
 
     if (e.target && e.target.tagName === 'IMG') {
-      const {url, urltype} = e.target.dataset;
+      
+      const { url, urltype } = e.target.dataset;
       if (!url) return;
       if (urltype == 3) {
         window.location.href = url;
-      } else {
+      } else if (urltype == 2) {
         const jumpUrlConfig = this.getJumpUrlConfig(url);
-        console.log(jumpUrlConfig)
-        jkdh.ui.jumpToAppPage(jumpUrlConfig);
+        window.location.href = jumpUrlConfig.query.contents;
+      } else if (urltype == 1) {
+        this.toAppPage(url)
       }
     }
   }
@@ -220,11 +240,12 @@ class Index extends PureComponent {
     this.props.dispatch({
       type: 'home/clearStroeList'
     });
+    clearTimeout(timer)
   }
   // 搜索点击跳转
   toSearch = () => {
-    const expand={}
-    userStatisticPage(0,'healthCircleToSearchEvent',expand,)
+    const expand = {}
+    userStatisticPage(0, 'healthCircleToSearchEvent', expand)
     localStorage.setItem('changState', 0)
     localStorage.setItem('keyWord', '')
     localStorage.setItem('searchType', '')
@@ -233,12 +254,12 @@ class Index extends PureComponent {
     });
   }
   // 跳转门店主页
-  toStoreHome = (id,storeName) => {
-    const expand={
-      orgId:id,
-      orgName:storeName
+  toStoreHome = (id, storeName) => {
+    const expand = {
+      orgId: id,
+      orgName: storeName
     }
-    userStatisticPage(0,'healthCircleToOrgItemEvent',expand,)
+    userStatisticPage(0, 'healthCircleToOrgItemEvent', expand)
     router.push({
       pathname: `/share/storeHome`,
       query: { storeId: id, }
@@ -254,8 +275,8 @@ class Index extends PureComponent {
   }
   //跳转到产品
   moreHomeStoreList = (e) => {
-    const expand={}
-    userStatisticPage(0,'healthCircleToOtherOrgEvent',expand,)
+    const expand = {}
+    userStatisticPage(0, 'healthCircleToOtherOrgEvent', expand)
     e.stopPropagation();
     router.push({
       pathname: `/share/moreHomeStoreList`,
@@ -264,8 +285,8 @@ class Index extends PureComponent {
 
   // 选择修改城市
   toChooseCity = () => {
-    const expand={}
-    userStatisticPage(0,'healthCircleToAreaEvent',expand,)
+    const expand = {}
+    userStatisticPage(0, 'healthCircleToAreaEvent', expand)
     router.push({
       pathname: `/share/chooseCity`
     });
@@ -328,18 +349,18 @@ class Index extends PureComponent {
                   AppBanners.length > 0 ? AppBanners.map((item, index) => {   // this.state.bag是在state里面定义的数组为了循环数据
                     return (
                       <div className="swiper-slide" key={item.id}>
-                      <a href="javascript:void(0)">
-                        <img
-                          src={item.fileBo.path}
-                          alt=""
-                          data-url={item.jumpUrl}
-                          data-id={item.id}
-                          data-urltype={item.urlType}
-                          onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                          }}
-                        />
-                      </a>
+                        <a href="javascript:void(0)">
+                          <img
+                            src={item.fileBo.path}
+                            alt=""
+                            data-url={item.jumpUrl}
+                            data-id={item.id}
+                            data-urltype={item.urlType}
+                            onLoad={() => {
+                              window.dispatchEvent(new Event('resize'));
+                            }}
+                          />
+                        </a>
                       </div>
                     )
                   }) : ''
@@ -359,8 +380,8 @@ class Index extends PureComponent {
                   const distanceNum = item.distance != null ? item.distance > 1000 ? item.distance / 1000 : item.distance : ''
                   const avgAmount = item.perCapitaConsum ? item.perCapitaConsum / 100 : 0
                   return (
-                    <li onClick={() => this.toStoreHome(item.id,item.storeName)} key={item.id}>
-                      <img className={listStyle.liLeft} src={Background}/>
+                    <li onClick={() => this.toStoreHome(item.id, item.storeName)} key={item.id}>
+                      <img className={listStyle.liLeft} src={Background} />
                       <div className={listStyle.liRight}>
                         <div className={listStyle.liTitle}>{item.storeName}</div>
                         <div className={listStyle.liPrice}>
