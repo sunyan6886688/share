@@ -174,7 +174,6 @@ class Index extends PureComponent {
     if (!flage) {
       return false
     }
-
     const { dispatch } = this.props
     if (loginType == 1) {
 
