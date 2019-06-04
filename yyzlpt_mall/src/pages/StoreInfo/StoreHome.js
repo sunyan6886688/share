@@ -172,7 +172,8 @@ class StoreHome extends PureComponent {
         ? StoreInfo.distance / 1000
         : StoreInfo.distance
       : 0;
-
+    let shareLink=window.location.href
+    shareLink=shareLink.replace('storeHome','share/storeHome')
     return (
       <div className={styles.body}>
         <div className={styles.banner}>
@@ -257,7 +258,7 @@ class StoreHome extends PureComponent {
                 className={styles.shareBtn}
                 title={StoreInfo && StoreInfo.storeName}
                 desc={StoreInfo && StoreInfo.info}
-                link={window.location.href}
+                link={shareLink}
                 imageUrl={bannerList[0] ? bannerList[0].path : BannerrImg}
               />
             </div>
