@@ -13,7 +13,7 @@ class Index extends PureComponent {
     IDcard: '',
     PhoneCode: '',
     clickFlage: true,
-    tips: '获取动态码',
+    tipsNum:0,
     loginType: '1',//1动态吗登录 2密码登录
     isRightIdCard: false,
     isRightPsd: false,
@@ -30,14 +30,7 @@ class Index extends PureComponent {
         // alert(window.location)
       }else{
         window.location.href = ' https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxafff8142f288e155&redirect_uri=http://192.168.2.57:8099/mall/share/login&response_type=code&scope=snsapi_userinfo'
-
       }
-    }
-    if (ua.match(/WeiBo/i) == "weibo") {
-      //在新浪微博客户端打开
-    }
-    if (ua.match(/QQ/i) == "qq") {
-      //在QQ空间打开
     }
   }
   getQueryString = (name) => {
@@ -49,7 +42,7 @@ class Index extends PureComponent {
     this.setState({
       IDcard: e.target.value,
       clickFlage: true,
-      tips: '获取动态码',
+      tipsNum: 0,
     });
     var patternMainLand = /^[A-Za-z0-9]+$/
     const value = e.target.value
@@ -92,10 +85,23 @@ class Index extends PureComponent {
     if (this.state.IDcard.length <= 7 || !this.state.isRightIdCard) {
       return false;
     }
+    const {dispatch}=this.props
+    dispatch({
+      type:'user/getDynamicPwd',
+      payload:{
+        patientCard:this.state.IDcard
+      }
+    }).then((date)=>{
+      this.setState({
+        clickFlage: false,
+        tipsNum: 59,
+      });
+    })
     this.setState({
       clickFlage: false,
-      tips: '59s后重发',
+      tipsNum: 59,
     });
+   
   };
   changLoginType = (value) => {
     this.setState({
@@ -103,42 +109,28 @@ class Index extends PureComponent {
     })
   }
 
-  // cheackIDcard = (e) => {
-  //   const patternMainLand = /^[A-Za-z0-9]+$/
-  //   const value=e.target.value
-  //   if(!value){
-  //     return false
-  //   }
-  //   const flage=patternMainLand.test(value)&&value.length>7
-  //   if (flage) {
-  //     this.setState({
-  //       isRightIdCard:true
-  //     })
-  //   } else {
-  //     Toast.info('请输入合法的证件号', 1);
-  //     this.setState({
-  //       isRightIdCard:false
-  //     })
-  //   }
-  // }
-  // checkPhoneCode=(e)=>{
-  //   const patternMainLand = /^[0-9]+$/
-  //   const value=e.target.value
-  //   if(!value){
-  //     return false
-  //   }
-  //   const flage=patternMainLand.test(value)&&value.length==6
-  //   if (flage) {
-  //     this.setState({
-  //       isRightPhoneCode:true
-  //     })
-  //   } else {
-  //     Toast.info('请输入合法的动态码', 1);
-  //     this.setState({
-  //       isRightPhoneCode:false
-  //     })
-  //   }
-  // }
+  cheackIDcard = (e) => {
+    const patternMainLand = /^[A-Za-z0-9]+$/
+    const value=e.target.value
+    if(!value){
+      return false
+    }
+    const flage=patternMainLand.test(value)&&value.length>7
+    if (!flage) {
+      Toast.info('请输入合法的证件号', 1);
+    }
+  }
+  checkPhoneCode=(e)=>{
+    const patternMainLand = /^[0-9]+$/
+    const value=e.target.value
+    if(!value){
+      return false
+    }
+    const flage=patternMainLand.test(value)&&value.length==6
+    if (!flage) {
+      Toast.info('请输入合法的动态码', 1);
+    } 
+  }
   clearIDcard = () => {
     this.setState({
       IDcard: ''
@@ -191,7 +183,7 @@ class Index extends PureComponent {
 
   }
   render() {
-    const { PhoneCode, IDcard, psdFlage, clickFlage, loginType, isRightIdCard, isRightPhoneCode, isRightPsd, Psd } = this.state
+    const { PhoneCode, IDcard,tipsNum, psdFlage, clickFlage, loginType, isRightIdCard, isRightPhoneCode, isRightPsd, Psd } = this.state
     const buttonStyles =
       IDcard && isRightIdCard && ((loginType == '1' && isRightPhoneCode && PhoneCode) || (loginType == 2 && isRightPsd && Psd))
         ? styles.buttonActive : styles.button;
@@ -215,7 +207,7 @@ class Index extends PureComponent {
               <li className={styles.userName}>
                 <input placeholder="身份证/台胞证/港澳证"
                   onChange={this.changeIDcard}
-                  // onBlur={this.cheackIDcard}
+                   onBlur={this.cheackIDcard}
                   maxLength={18}
                   value={IDcard}
                 />
@@ -226,12 +218,12 @@ class Index extends PureComponent {
               <li className={styles.code}>
                 <input placeholder="短信动态码"
                   onChange={this.changePhoneCode}
-                  //  onBlur={this.checkPhoneCode}
+                  onBlur={this.checkPhoneCode}
                   maxLength={6}
                   value={PhoneCode}
                 />
                 <span className={spanStyles} onClick={this.getPhoneCode}>
-                  {this.state.tips}
+                  {tipsNum>0?tipsNum+'s后重发':'获取动态码'}
                 </span>
               </li>
               <div className={styles.tips}>
@@ -239,12 +231,12 @@ class Index extends PureComponent {
                 <b onClick={this.toRegindter}>没有账号？点此注册</b>
               </div>
             </ul> : ''}
-          {this.state.loginType == '2' ?
+          {loginType == '2' ?
             <ul className={styles.psdLoginBox}>
               <li className={styles.userName}>
                 <input placeholder="身份证/台胞证/港澳证"
                   onChange={this.changeIDcard}
-                  // onBlur={this.cheackIDcard}
+                  onBlur={this.cheackIDcard}
                   maxLength={18}
                   value={IDcard}
                 />
