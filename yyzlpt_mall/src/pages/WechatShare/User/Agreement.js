@@ -11,7 +11,7 @@ export default class Agreement extends React.PureComponent {
   }
 
   render() {
-    const {isShow, onConfirm} = this.props;
+    const {isShow, onConfirm, children} = this.props;
     
     return (
       <CSSTransition
@@ -26,19 +26,7 @@ export default class Agreement extends React.PureComponent {
             timeout={200}>
             <div className={styles.container}>
               <div className={styles.article}>
-                <h4 className={styles.title}>注册协议</h4>
-                <div className={styles.content}>
-                  <p>（一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                    一.总则（一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                    一.总则（一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                    （一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                    （一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                    （一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                    一.总则（一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                    一.总则（一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                    （一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口。
-                （一）12580预约挂号服务（以下简称预约挂号服务）是中国移动12580预约挂号频道在其“服务”中设立的包括电话、网站、手机wap和客户端服务窗口</p>
-                </div>
+                {children}
               </div>
               <button className={styles.btn} onClick={onConfirm}>确定</button>
             </div>
