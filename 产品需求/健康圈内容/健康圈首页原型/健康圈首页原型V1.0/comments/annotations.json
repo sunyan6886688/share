@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "canvasID": "s-d12245cc-1680-458d-89dd-4f0d7fb22724",
+      "elementID": "s-Label_14",
+      "canvasURL": "screens/d12245cc-1680-458d-89dd-4f0d7fb22724",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 1,
+      "parentCode": null,
+      "content": "调用目前机构管理中的热门机构推荐接口",
+      "timestamp": "1557987266446",
+      "date": "16-May-2019 14:14",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-d12245cc-1680-458d-89dd-4f0d7fb22724",
+      "elementID": "s-Label_12",
+      "canvasURL": "screens/d12245cc-1680-458d-89dd-4f0d7fb22724",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 2,
+      "parentCode": null,
+      "content": "热门文章排序规则：\r\n1，手动设置的，按照设置顺序展示\r\n2，未设置手动的，按照文章阅读量排序",
+      "timestamp": "1557987855441",
+      "date": "16-May-2019 14:24",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-d12245cc-1680-458d-89dd-4f0d7fb22724",
+      "elementID": "s-Label_13",
+      "canvasURL": "screens/d12245cc-1680-458d-89dd-4f0d7fb22724",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 3,
+      "parentCode": null,
+      "content": "名医推荐规则：\r\n（1）后台管理，人工设置则按照设置顺序\r\n（2）如果未进行设置，则按照以下算法进行推荐\r\n好评率*权重+预约量*权重+问诊量*权重（权重可以进行设置，如果不设置默认都是1）.按照计算的总和进行排序",
+      "timestamp": "1557989136293",
+      "date": "16-May-2019 14:45",
+      "fileName": "",
+      "isRead": true
+    }
+  ]
+}

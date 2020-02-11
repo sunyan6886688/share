@@ -1,0 +1,424 @@
+{
+  "comments": [
+    {
+      "canvasID": "s-a7a6185a-c6a1-4704-b66d-5f99e620a166",
+      "elementID": "s-Rectangle_19",
+      "canvasURL": "screens/a7a6185a-c6a1-4704-b66d-5f99e620a166",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 1,
+      "parentCode": null,
+      "content": "（1）主页评论按时间顺序排序，展示最近的2条评论记录。\n（2）如果最近的2条评论记录是由同一个患者产生，则进行滤重",
+      "timestamp": "1558918751792",
+      "date": "27-May-2019 08:59",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-a7a6185a-c6a1-4704-b66d-5f99e620a166",
+      "elementID": "s-Rectangle_20",
+      "canvasURL": "screens/a7a6185a-c6a1-4704-b66d-5f99e620a166",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 2,
+      "parentCode": null,
+      "content": "1，此处最多展示6个标签\n2，优先展示服务分类标签\n2，再根据评论量展示评论标签",
+      "timestamp": "1558918790235",
+      "date": "27-May-2019 08:59",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "elementID": "s-Text_2",
+      "canvasURL": "screens/7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 3,
+      "parentCode": null,
+      "content": "取医生所有评价标签中最多的2项",
+      "timestamp": "1558937741461",
+      "date": "27-May-2019 14:15",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "elementID": "s-Rectangle_9",
+      "canvasURL": "screens/7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 4,
+      "parentCode": null,
+      "content": "标签筛选：\n（1）包括业务筛选、用户差评、带图评论、以及用户输入的确诊后的疾病标签\n（2）业务标签按照评论数量多少排序\n（3）疾病标签按照用户确诊后填写的疾病数量多少排序\n（4）用户填写的疾病标签，后台可以审核过滤无效标签\n（5）疾病标签先按照评论量取最多的5个\n（6）标签最多展示12个",
+      "timestamp": "1558938774612",
+      "date": "27-May-2019 14:32",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "elementID": "s-Rectangle_5",
+      "canvasURL": "screens/7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 5,
+      "parentCode": null,
+      "content": "差评指1星评价",
+      "timestamp": "1558938805324",
+      "date": "27-May-2019 14:33",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "elementID": "s-Image_1",
+      "canvasURL": "screens/7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 6,
+      "parentCode": null,
+      "content": "1，点图评论，最多可上传3张图",
+      "timestamp": "1558942460412",
+      "date": "27-May-2019 15:34",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "elementID": "s-Text_4",
+      "canvasURL": "screens/7fa6c50e-a601-47b8-966c-fbe82b25a960",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 7,
+      "parentCode": null,
+      "content": "1，先发后审：直接发布用户的评论\n2，先审后发的模式下：用户发布的评论需要经过后台审核通过才可以进行发布",
+      "timestamp": "1558946525725",
+      "date": "27-May-2019 16:42",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-ac865dfd-7b30-49fc-86a6-9fd15bbd8e88",
+      "elementID": "s-Text_5",
+      "canvasURL": "screens/ac865dfd-7b30-49fc-86a6-9fd15bbd8e88",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 8,
+      "parentCode": null,
+      "content": "1，医院评论主要是集合该医院的医生、服务评论\n\n2、机构评论集合展示商品的评论",
+      "timestamp": "1559094169085",
+      "date": "29-May-2019 09:42",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-35765aa7-c8ea-4597-bc9b-84c6c22769ff",
+      "elementID": "s-Text_61",
+      "canvasURL": "screens/35765aa7-c8ea-4597-bc9b-84c6c22769ff",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 9,
+      "parentCode": null,
+      "content": "有多个分馆的机构，分馆的评论以及分馆下的医生、商品评论都关联到该机构",
+      "timestamp": "1559096390202",
+      "date": "29-May-2019 10:19",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-53fc9371-3f6a-4199-b96d-9bf39930bb28",
+      "elementID": "s-Rectangle_36",
+      "canvasURL": "screens/53fc9371-3f6a-4199-b96d-9bf39930bb28",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 10,
+      "parentCode": null,
+      "content": "展示医院发布的文章、活动",
+      "timestamp": "1559097191322",
+      "date": "29-May-2019 10:33",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-53fc9371-3f6a-4199-b96d-9bf39930bb28",
+      "elementID": "s-Rectangle_1",
+      "canvasURL": "screens/53fc9371-3f6a-4199-b96d-9bf39930bb28",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 11,
+      "parentCode": null,
+      "content": "展示机构的热门商品，机构详情页最多展示3个热门商品，可通过点击查看全部商品跳转到该机构的商品列表",
+      "timestamp": "1559097302137",
+      "date": "29-May-2019 10:35",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-53fc9371-3f6a-4199-b96d-9bf39930bb28",
+      "elementID": "s-Rectangle_24",
+      "canvasURL": "screens/53fc9371-3f6a-4199-b96d-9bf39930bb28",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 12,
+      "parentCode": null,
+      "content": "展示2条最近的点评",
+      "timestamp": "1559098060770",
+      "date": "29-May-2019 10:47",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-53fc9371-3f6a-4199-b96d-9bf39930bb28",
+      "elementID": "s-Text_98",
+      "canvasURL": "screens/53fc9371-3f6a-4199-b96d-9bf39930bb28",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 13,
+      "parentCode": null,
+      "content": "推荐商品为跟当前机构标签相匹配的商品。\n比如口腔机构主页下面推荐口腔类商品",
+      "timestamp": "1559098459430",
+      "date": "29-May-2019 10:54",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-89f3506a-091d-4aef-ac47-e8ca244d403c",
+      "elementID": "s-Text_7",
+      "canvasURL": "screens/89f3506a-091d-4aef-ac47-e8ca244d403c",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 14,
+      "parentCode": null,
+      "content": "1、首次评论发布后，30天内可以继续追加评论。\n2、追评只能追加一次。\n3，追评不能修改评分和标签，只能增加文字、图片评论",
+      "timestamp": "1559109991832",
+      "date": "29-May-2019 14:06",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-ac865dfd-7b30-49fc-86a6-9fd15bbd8e88",
+      "elementID": "s-Text_2",
+      "canvasURL": "screens/ac865dfd-7b30-49fc-86a6-9fd15bbd8e88",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 15,
+      "parentCode": null,
+      "content": "该医院下的商品、医生评论都关联在该医院下。\n取该医院关联的评论标签最多的2个",
+      "timestamp": "1559178178145",
+      "date": "30-May-2019 09:02",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-8ad5574d-5259-4afd-8ddd-4fcb99f17ddc",
+      "elementID": "s-Rectangle_13",
+      "canvasURL": "screens/8ad5574d-5259-4afd-8ddd-4fcb99f17ddc",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 16,
+      "parentCode": null,
+      "content": "医生和机构账户会展示此菜单",
+      "timestamp": "1559181784088",
+      "date": "30-May-2019 10:03",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-8ad5574d-5259-4afd-8ddd-4fcb99f17ddc",
+      "elementID": "s-Rectangle_14",
+      "canvasURL": "screens/8ad5574d-5259-4afd-8ddd-4fcb99f17ddc",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 17,
+      "parentCode": null,
+      "content": "我订阅、收藏的文章",
+      "timestamp": "1559181796760",
+      "date": "30-May-2019 10:03",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-8ad5574d-5259-4afd-8ddd-4fcb99f17ddc",
+      "elementID": "s-Rectangle_4",
+      "canvasURL": "screens/8ad5574d-5259-4afd-8ddd-4fcb99f17ddc",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 18,
+      "parentCode": null,
+      "content": "我收藏的医生、就诊过的医生",
+      "timestamp": "1559182137765",
+      "date": "30-May-2019 10:08",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-8ad5574d-5259-4afd-8ddd-4fcb99f17ddc",
+      "elementID": "s-Rectangle_5",
+      "canvasURL": "screens/8ad5574d-5259-4afd-8ddd-4fcb99f17ddc",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 19,
+      "parentCode": null,
+      "content": "我收藏的医院、就诊过的医院",
+      "timestamp": "1559182149093",
+      "date": "30-May-2019 10:09",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-4fc61ac5-da93-4a18-aa6c-5ec05b5397e8",
+      "elementID": "s-Text_8",
+      "canvasURL": "screens/4fc61ac5-da93-4a18-aa6c-5ec05b5397e8",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 20,
+      "parentCode": null,
+      "content": "1、对应原来的已就诊状态\n2、就诊后15天内未评价，系统默认好评",
+      "timestamp": "1559182446954",
+      "date": "30-May-2019 10:14",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-4fc61ac5-da93-4a18-aa6c-5ec05b5397e8",
+      "elementID": "s-Text_6",
+      "canvasURL": "screens/4fc61ac5-da93-4a18-aa6c-5ec05b5397e8",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 22,
+      "parentCode": null,
+      "content": "挂号状态：待就诊、待评价、已取消、已违约、已完成、已追评",
+      "timestamp": "1559196481735",
+      "date": "30-May-2019 14:08",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-4fc61ac5-da93-4a18-aa6c-5ec05b5397e8",
+      "elementID": "s-Button_2",
+      "canvasURL": "screens/4fc61ac5-da93-4a18-aa6c-5ec05b5397e8",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 23,
+      "parentCode": null,
+      "content": "只有已就诊状态的记录可以评价",
+      "timestamp": "1559196782237",
+      "date": "30-May-2019 14:13",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-34703ade-7a6d-4bc1-b0e4-159ccbd653d1",
+      "elementID": "s-Text_8",
+      "canvasURL": "screens/34703ade-7a6d-4bc1-b0e4-159ccbd653d1",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 24,
+      "parentCode": null,
+      "content": "非必填",
+      "timestamp": "1559201236148",
+      "date": "30-May-2019 15:27",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-34703ade-7a6d-4bc1-b0e4-159ccbd653d1",
+      "elementID": "s-Rectangle_8",
+      "canvasURL": "screens/34703ade-7a6d-4bc1-b0e4-159ccbd653d1",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 25,
+      "parentCode": null,
+      "content": "必填",
+      "timestamp": "1559201254388",
+      "date": "30-May-2019 15:27",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-34703ade-7a6d-4bc1-b0e4-159ccbd653d1",
+      "elementID": "s-Text_9",
+      "canvasURL": "screens/34703ade-7a6d-4bc1-b0e4-159ccbd653d1",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 26,
+      "parentCode": null,
+      "content": "非必填",
+      "timestamp": "1559201263638",
+      "date": "30-May-2019 15:27",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-a7166f91-6fb2-4e4f-a020-300cf33009e9",
+      "elementID": "s-Text_8",
+      "canvasURL": "screens/a7166f91-6fb2-4e4f-a020-300cf33009e9",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 27,
+      "parentCode": null,
+      "content": "非必填",
+      "timestamp": "1559262970660",
+      "date": "31-May-2019 08:36",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-a7166f91-6fb2-4e4f-a020-300cf33009e9",
+      "elementID": "s-Rectangle_9",
+      "canvasURL": "screens/a7166f91-6fb2-4e4f-a020-300cf33009e9",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 28,
+      "parentCode": null,
+      "content": "非必填",
+      "timestamp": "1559263305009",
+      "date": "31-May-2019 08:41",
+      "fileName": "",
+      "isRead": true
+    }
+    ,{
+      "canvasID": "s-35765aa7-c8ea-4597-bc9b-84c6c22769ff",
+      "elementID": "s-Image_7",
+      "canvasURL": "screens/35765aa7-c8ea-4597-bc9b-84c6c22769ff",
+      "scenario" : "",
+      "author": "Anonymous",
+      "authorID" : 0,
+      "code": 29,
+      "parentCode": null,
+      "content": "取所有挂在该医院的评论星级平均值",
+      "timestamp": "1559291605648",
+      "date": "31-May-2019 16:33",
+      "fileName": "",
+      "isRead": true
+    }
+  ]
+}
